@@ -43,11 +43,19 @@ describe('API', () => {
           repos_url: 'https://api.github.com/orgs/org-fakito/repos',
         }]
 
-        nock('https://api.github.com')
+        nock('https://api.github.com', {
+            reqheaders: {
+              'User-Agent': 'RatoX',
+            },
+          })
           .get('/user?access_token=token_github')
           .reply(200, fake_result)
 
-        nock('https://api.github.com')
+        nock('https://api.github.com', {
+            reqheaders: {
+              'User-Agent': 'RatoX',
+            },
+          })
           .get('/users/Fakito/orgs?access_token=token_github')
           .reply(200, fake_orgs_result)
 
